@@ -1,8 +1,12 @@
 import 'package:first/common/utils/constants.dart';
+import 'package:first/common/widgets/appstyle.dart';
+import 'package:first/common/widgets/reusable_text.dart';
+import 'package:first/common/widgets/width_spacer.dart';
 import 'package:first/features/onboarding/widgets/PageOne.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../widgets/PageTwo.dart';
 
@@ -41,12 +45,36 @@ class _OnBoardingState extends State<OnBoarding> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            pageController.nextPage(
+                                duration: const Duration(milliseconds: 600),
+                                curve: Curves.ease);
+                          },
+                          child: Icon(
+                            Ionicons.chevron_forward_circle,
+                            size: 30,
+                            color: AppConst.kLight,
+                          ),
+                        ),
+                        const WidthSpacer(wydth: 5),
+                        ReusableText(
+                            text: "Skip",
+                            style:
+                                appstyle(16, AppConst.kLight, FontWeight.w500)),
+                      ],
+                    ),
                     GestureDetector(
-                      onTap: null,
-                      child: Icon(
-                        Ionicons.chevron_forward_circle,
-                        size: 30,
-                        color: AppConst.kLight,
+                      onTap: () {
+                        pageController.nextPage(
+                            duration: const Duration(milliseconds: 600),
+                            curve: Curves.ease);
+                      },
+                      child: SmoothPageIndicator(
+                        controller: pageController,
+                        count: 2,
                       ),
                     )
                   ],

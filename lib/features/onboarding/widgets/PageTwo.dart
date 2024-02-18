@@ -1,7 +1,8 @@
 import 'package:first/common/utils/constants.dart';
-import 'package:first/common/widgets/appstyle.dart';
+
+import 'package:first/common/widgets/custom_otn_btn.dart';
 import 'package:first/common/widgets/hieght_spacer.dart';
-import 'package:first/common/widgets/reusable_text.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -25,6 +26,16 @@ class PageTwo extends StatelessWidget {
               child: Image.asset("assets/images/to-do-list.png"),
             ),
             const HeightSpacer(hieght: 50),
+            CustomOtlnBtn(
+                onTap: () {
+                  Navigator.pushReplacement(context, 
+                  MaterialPageRoute(builder: (context)=> LoginPage()))
+                
+                },
+                width: AppConst.kWidth * 0.9,
+                height: AppConst.kHieght * 0.06,
+                text: "Login With Phone Number",
+                color: AppConst.kLight)
           ],
         ));
   }

@@ -1,6 +1,7 @@
 import 'package:first/common/utils/constants.dart';
 import 'package:first/common/widgets/appstyle.dart';
 import 'package:first/common/widgets/custom_otn_btn.dart';
+import 'package:first/common/widgets/custom_text.dart';
 import 'package:first/common/widgets/hieght_spacer.dart';
 import 'package:first/common/widgets/reusable_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,6 +16,7 @@ class LoginPage extends ConsumerStatefulWidget {
 }
 
 class _LoginPageState extends ConsumerState<LoginPage> {
+  final TextEditingController phone = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,9 +41,20 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   style: appstyle(17, AppConst.kLight, FontWeight.w500)),
             ),
             const HeightSpacer(hieght: 20),
-            //Center(
-            //    child: CustomTextField(),
-            // ),
+            Center(
+              child: CustomTextField(
+                controller: phone,
+                //  prefixIcon: Container(
+                //  padding: EdgeInsets.all(4),
+                //child: GestureDetector(
+
+                // ),
+                // ),
+                keyboardType: TextInputType.phone,
+                hintText: "Enter your phone number",
+                hintStyle: appstyle(16, AppConst.kGreyDk, FontWeight.w600),
+              ),
+            ),
             const HeightSpacer(hieght: 20),
             CustomOtlnBtn(
               width: AppConst.kWidth * 0.9,

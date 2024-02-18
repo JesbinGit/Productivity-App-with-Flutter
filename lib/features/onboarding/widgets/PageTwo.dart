@@ -6,6 +6,8 @@ import 'package:first/common/widgets/hieght_spacer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../auth/pages/login.dart';
+
 class PageTwo extends StatelessWidget {
   const PageTwo({super.key});
 
@@ -28,9 +30,10 @@ class PageTwo extends StatelessWidget {
             const HeightSpacer(hieght: 50),
             CustomOtlnBtn(
                 onTap: () {
-                  Navigator.pushReplacement(context, 
-                  MaterialPageRoute(builder: (context)=> LoginPage()))
-                
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginPage()));
                 },
                 width: AppConst.kWidth * 0.9,
                 height: AppConst.kHieght * 0.06,

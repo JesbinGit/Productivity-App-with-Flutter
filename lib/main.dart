@@ -1,3 +1,5 @@
+import 'package:first/common/utils/constants.dart';
+import 'package:first/features/onboarding/pages/onboarding.dart';
 import 'package:first/features/todo/pages/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,11 +25,13 @@ class MyApp extends StatelessWidget {
             title: 'Task Manager',
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
+              scaffoldBackgroundColor: AppConst.kBkDark,
               colorScheme: ColorScheme.fromSeed(
                   seedColor: Color.fromARGB(255, 217, 255, 3)),
               useMaterial3: true,
             ),
-            home: const HomePage(),
+            themeMode: ThemeMode.dark,
+            home: const OnBoarding(),
           );
         });
   }

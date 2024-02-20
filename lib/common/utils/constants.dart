@@ -14,6 +14,11 @@ class AppConst {
   static const Color kBkLight = Color.fromARGB(255, 26, 27, 30);
   static const Color kGreyBk = Color.fromARGB(255, 27, 28, 31);
   static const Color kRed = Color.fromARGB(255, 244, 0, 0);
+  static const Color ccBlue = Color.fromRGBO(0, 140, 255, 1);
+  static const Color ccBlueDk = Color.fromRGBO(0, 128, 255, 1);
+  static const Color ccGrey = Color.fromRGBO(230, 230, 230, 1);
+  static const Color ccGreyBk = Color.fromRGBO(119, 119, 119, 1);
+  static const Color ccBlack = Color.fromRGBO(0, 0, 0, 1);
 
   static double kWidth = 375.w;
   static double kHieght = 825.h;

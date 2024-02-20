@@ -41,6 +41,8 @@ dependencies:
   flutter_vector_icons: ^2.0.0
   smooth_page_indicator: ^1.1.0
   riverpod: ^2.5.0
+  country_picker: ^2.0.24
+  pinput: ^4.0.0
 
 dev_dependencies:
   flutter_test:

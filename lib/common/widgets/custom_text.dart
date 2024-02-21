@@ -3,21 +3,23 @@ import 'package:first/common/widgets/appstyle.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField(
-      {super.key,
-      this.keyboardType,
-      required this.hintText,
-      this.suffixIcon,
-      this.prefixIcon,
-      this.hintStyle,
-      required this.controller,
-      this.onChanged});
+  const CustomTextField({
+    super.key,
+    this.keyboardType,
+    required this.hintText,
+    this.suffixIcon,
+    this.prefixIcon,
+    this.hintStyle,
+    required this.controller,
+    this.onChanged,
+  });
 
   final TextInputType? keyboardType;
   final String hintText;
   final Widget? suffixIcon;
   final Widget? prefixIcon;
   final TextStyle? hintStyle;
+
   final TextEditingController? controller;
   final void Function(String)? onChanged;
 
@@ -25,9 +27,11 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: AppConst.kWidth * 0.9,
+      height: AppConst.kHieght * 0.07,
       decoration: BoxDecoration(
-          color: AppConst.kLight,
+          color: AppConst.ccGrey,
           borderRadius: BorderRadius.all(Radius.circular(AppConst.kRadius))),
+      // color: backgroundColor,
       child: TextFormField(
         keyboardType: keyboardType,
         controller: controller,

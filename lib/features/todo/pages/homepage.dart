@@ -17,7 +17,10 @@ class HomePage extends ConsumerStatefulWidget {
   ConsumerState<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends ConsumerState<HomePage> {
+class _HomePageState extends ConsumerState<HomePage>
+    with TickerProviderStateMixin {
+  late final TabController tabController =
+      TabController(length: 2, vsync: this);
   final TextEditingController search = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -40,14 +43,15 @@ class _HomePageState extends ConsumerState<HomePage> {
                           width: 25.w,
                           height: 25.h,
                           decoration: BoxDecoration(
-                              // color: AppConst.ccBlack,
+                              color: AppConst.ccGrey,
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(8))),
+                                  BorderRadius.all(Radius.circular(7))),
                           child: GestureDetector(
                             onTap: () {},
                             child: Icon(
                               Icons.access_time,
-                              color: AppConst.ccBlack,
+                              color: AppConst.ccGreyBk,
+                              size: 23,
                             ),
                           ),
                         ),
@@ -62,14 +66,14 @@ class _HomePageState extends ConsumerState<HomePage> {
                           width: 25.w,
                           height: 25.h,
                           decoration: BoxDecoration(
-                              color: AppConst.ccBlack,
+                              color: AppConst.ccGrey,
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(8))),
+                                  BorderRadius.all(Radius.circular(7))),
                           child: GestureDetector(
                             onTap: () {},
                             child: Icon(
                               Icons.add,
-                              color: AppConst.kLight,
+                              color: AppConst.ccGreyBk,
                             ),
                           ),
                         ),
@@ -100,6 +104,87 @@ class _HomePageState extends ConsumerState<HomePage> {
               ),
             )),
         body: SafeArea(
-            child: Padding(padding: EdgeInsets.symmetric(horizontal: 20))));
+            child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: ListView(
+            children: [
+              const HeightSpacer(hieght: 25),
+              Row(
+                children: [
+                  // Icon
+                  const WidthSpacer(wydth: 10),
+                  ReusableText(
+                    text: "Today's Task",
+                    style: appstyle(18, AppConst.ccBlack, FontWeight.bold),
+                  )
+                ],
+              ), // Row
+              const HeightSpacer(hieght: 25),
+              Container(
+                decoration: BoxDecoration(
+                  color: AppConst.ccGrey,
+                  borderRadius: BorderRadius.circular(AppConst.kRadius),
+                ),
+                child: TabBar(
+                  indicatorSize: TabBarIndicatorSize.label,
+                  indicator: BoxDecoration(
+                    color: AppConst.ccBlue,
+                    borderRadius:
+                        BorderRadius.all(Radius.circular(AppConst.kRadius)),
+                  ),
+                  controller: tabController,
+                  labelPadding: EdgeInsets.zero,
+                  isScrollable: false,
+                  labelStyle: appstyle(24, AppConst.kRed, FontWeight.w700),
+                  unselectedLabelColor: AppConst.ccGrey,
+                  tabs: [
+                    Tab(
+                      child: SizedBox(
+                        width: AppConst.kWidth * 0.5,
+                        child: Center(
+                          child: ReusableText(
+                              text: "Pending",
+                              style: appstyle(
+                                  16, AppConst.ccBlack, FontWeight.bold)),
+                        ),
+                      ),
+                    ),
+                    Tab(
+                      child: Container(
+                        width: AppConst.kWidth * 0.5,
+                        child: Center(
+                          child: ReusableText(
+                              text: "Completed",
+                              style: appstyle(
+                                  16, AppConst.ccBlack, FontWeight.bold)),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              const HeightSpacer(hieght: 25),
+              SizedBox(
+                height: AppConst.kHieght * 0.3,
+                width: AppConst.kWidth,
+                child: ClipRRect(
+                  borderRadius:
+                      BorderRadius.all(Radius.circular(AppConst.kRadius)),
+                  child: TabBarView(controller: tabController, children: [
+                    Container(
+                      color: AppConst.ccGrey,
+                      height: AppConst.kHieght * 0.3,
+                    ),
+                    Container(
+                      color: AppConst.ccGrey,
+                      height: AppConst.kHieght * 0.3,
+                    )
+                  ]),
+                ),
+              ),
+            ],
+          ),
+        )));
   }
 }

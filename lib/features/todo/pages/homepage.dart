@@ -1,10 +1,15 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:first/common/utils/constants.dart';
 import 'package:first/common/widgets/appstyle.dart';
 import 'package:first/common/widgets/custom_text.dart';
+import 'package:first/common/widgets/expansion_tile.dart';
 import 'package:first/common/widgets/hieght_spacer.dart';
 import 'package:first/common/widgets/reusable_text.dart';
 import 'package:first/common/widgets/width_spacer.dart';
+import 'package:first/features/auth/pages/login.dart';
+import 'package:first/features/pomodoro/main_screen.dart';
 import 'package:flutter/gestures.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
@@ -39,22 +44,6 @@ class _HomePageState extends ConsumerState<HomePage>
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          width: 25.w,
-                          height: 25.h,
-                          decoration: BoxDecoration(
-                              color: AppConst.ccGrey,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(7))),
-                          child: GestureDetector(
-                            onTap: () {},
-                            child: Icon(
-                              Icons.access_time,
-                              color: AppConst.ccGreyBk,
-                              size: 23,
-                            ),
-                          ),
-                        ),
                         Spacer(),
                         HeightSpacer(hieght: 25),
                         ReusableText(
@@ -62,21 +51,6 @@ class _HomePageState extends ConsumerState<HomePage>
                             style: appstyle(
                                 18, AppConst.ccBlack, FontWeight.bold)),
                         Spacer(),
-                        Container(
-                          width: 25.w,
-                          height: 25.h,
-                          decoration: BoxDecoration(
-                              color: AppConst.ccGrey,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(7))),
-                          child: GestureDetector(
-                            onTap: () {},
-                            child: Icon(
-                              Icons.add,
-                              color: AppConst.ccGreyBk,
-                            ),
-                          ),
-                        ),
                       ],
                     ),
                   ),
@@ -103,6 +77,35 @@ class _HomePageState extends ConsumerState<HomePage>
                 ],
               ),
             )),
+        bottomNavigationBar: CurvedNavigationBar(
+            backgroundColor: AppConst.ccBlue,
+            items: <Widget>[
+              Icon(Icons.access_time, size: 30),
+              Icon(Icons.home, size: 30),
+              Icon(Icons.cloud, size: 30),
+            ],
+            onTap: (index) {
+              switch (index) {
+                case 0:
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CustomTimer()),
+                  );
+                  break;
+                case 1:
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomePage()),
+                  );
+                  break;
+                case 2:
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage()),
+                  );
+                  break;
+              }
+            }),
         body: SafeArea(
             child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20),
@@ -111,7 +114,10 @@ class _HomePageState extends ConsumerState<HomePage>
               const HeightSpacer(hieght: 25),
               Row(
                 children: [
-                  // Icon
+                  Icon(
+                    Icons.list,
+                    size: 25,
+                  ),
                   const WidthSpacer(wydth: 10),
                   ReusableText(
                     text: "Today's Task",
@@ -183,6 +189,24 @@ class _HomePageState extends ConsumerState<HomePage>
                   ]),
                 ),
               ),
+              const HeightSpacer(hieght: 20),
+              const expansionTile(
+                  text: "Tommorrow's Task",
+                  text2: "Things to do for tommorrow",
+                  children: []),
+              const HeightSpacer(hieght: 20),
+              expansionTile(
+                  text: DateTime.now()
+                      .add(Duration(days: 2))
+                      .toString()
+                      .substring(5, 10),
+                  text2: "Things to do for tommorrow",
+                  children: []),
+              const HeightSpacer(hieght: 20),
+              const expansionTile(
+                  text: "Tommorrow's Task",
+                  text2: "Things to do for tommorrow",
+                  children: [])
             ],
           ),
         )));

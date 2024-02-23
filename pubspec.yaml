@@ -45,6 +45,9 @@ dependencies:
   pinput: ^4.0.0
   curved_navigation_bar: ^1.0.3
   sleek_circular_slider: ^2.0.1
+  flutter_local_notifications: ^16.3.2
+  
+
 
 dev_dependencies:
   flutter_test:

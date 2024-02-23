@@ -7,7 +7,8 @@ import 'package:first/common/widgets/hieght_spacer.dart';
 import 'package:first/common/widgets/reusable_text.dart';
 import 'package:first/common/widgets/width_spacer.dart';
 import 'package:first/features/auth/pages/login.dart';
-import 'package:first/features/pomodoro/main_screen.dart';
+import 'package:first/features/pomodoro/timer.dart';
+import 'package:first/features/todo/widgets/todo_tile.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -77,35 +78,52 @@ class _HomePageState extends ConsumerState<HomePage>
                 ],
               ),
             )),
-        bottomNavigationBar: CurvedNavigationBar(
-            backgroundColor: AppConst.ccBlue,
-            items: <Widget>[
-              Icon(Icons.access_time, size: 30),
-              Icon(Icons.home, size: 30),
-              Icon(Icons.cloud, size: 30),
-            ],
-            onTap: (index) {
-              switch (index) {
-                case 0:
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => CustomTimer()),
-                  );
-                  break;
-                case 1:
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomePage()),
-                  );
-                  break;
-                case 2:
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginPage()),
-                  );
-                  break;
-              }
-            }),
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: AppConst.kLight,
+          unselectedItemColor: Colors.black,
+          selectedItemColor: Colors.black,
+          elevation: 8,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.access_time, size: 30, color: AppConst.ccBlack),
+              label: 'Pomodoro',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home, size: 30, color: AppConst.ccBlack),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.cloud,
+                size: 30,
+                color: AppConst.ccBlack,
+              ),
+              label: 'Weather',
+            ),
+          ],
+          onTap: (index) {
+            switch (index) {
+              case 0:
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CustomTimer()),
+                );
+                break;
+              case 1:
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
+                break;
+              case 2:
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage()),
+                );
+                break;
+            }
+          },
+        ),
         body: SafeArea(
             child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20),
@@ -134,7 +152,7 @@ class _HomePageState extends ConsumerState<HomePage>
                 child: TabBar(
                   indicatorSize: TabBarIndicatorSize.label,
                   indicator: BoxDecoration(
-                    color: AppConst.ccBlue,
+                    color: AppConst.ccBlueDk,
                     borderRadius:
                         BorderRadius.all(Radius.circular(AppConst.kRadius)),
                   ),
@@ -181,6 +199,14 @@ class _HomePageState extends ConsumerState<HomePage>
                     Container(
                       color: AppConst.ccGrey,
                       height: AppConst.kHieght * 0.3,
+                      child: ListView(
+                        children: const [
+                          TodoTile(
+                            start: "03:00",
+                            end: "05:00",
+                          )
+                        ],
+                      ),
                     ),
                     Container(
                       color: AppConst.ccGrey,

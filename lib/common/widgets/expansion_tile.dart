@@ -21,6 +21,14 @@ class expansionTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2),
+            blurRadius: 5.0,
+            spreadRadius: 2.0,
+            offset: Offset(0, 2),
+          ),
+        ],
         color: AppConst.ccGrey,
         borderRadius: BorderRadius.all(Radius.circular(AppConst.kRadius)),
       ),

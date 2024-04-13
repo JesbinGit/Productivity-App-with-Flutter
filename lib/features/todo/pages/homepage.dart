@@ -8,6 +8,7 @@ import 'package:first/common/widgets/reusable_text.dart';
 import 'package:first/common/widgets/width_spacer.dart';
 import 'package:first/features/auth/pages/login.dart';
 import 'package:first/features/pomodoro/timer.dart';
+import 'package:first/features/todo/controllers/expansion_provider.dart';
 import 'package:first/features/todo/widgets/todo_tile.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:async';
@@ -78,6 +79,17 @@ class _HomePageState extends ConsumerState<HomePage>
                 ],
               ),
             )),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            // Handle the button press
+          },
+          child: Icon(
+            Icons.add,
+            size: 30,
+            color: Colors.white,
+          ),
+          backgroundColor: AppConst.ccBlue,
+        ),
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: AppConst.kLight,
           unselectedItemColor: Colors.black,
@@ -85,20 +97,33 @@ class _HomePageState extends ConsumerState<HomePage>
           elevation: 8,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.access_time, size: 30, color: AppConst.ccBlack),
-              label: 'Pomodoro',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home, size: 30, color: AppConst.ccBlack),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.cloud,
-                size: 30,
-                color: AppConst.ccBlack,
+              icon: Padding(
+                padding: EdgeInsets.only(
+                    top: 8), // Adjust the top padding for all icons
+                child:
+                    Icon(Icons.access_time, size: 30, color: AppConst.ccBlack),
               ),
-              label: 'Weather',
+              label: '', // Set label to an empty string
+            ),
+            BottomNavigationBarItem(
+              icon: Padding(
+                padding: EdgeInsets.only(
+                    top: 8), // Adjust the top padding for all icons
+                child: Icon(Icons.home, size: 30, color: AppConst.ccBlack),
+              ),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Padding(
+                padding: EdgeInsets.only(
+                    top: 8), // Adjust the top padding for all icons
+                child: Icon(
+                  Icons.cloud,
+                  size: 30,
+                  color: AppConst.ccBlack,
+                ),
+              ),
+              label: '',
             ),
           ],
           onTap: (index) {
@@ -200,10 +225,12 @@ class _HomePageState extends ConsumerState<HomePage>
                       color: AppConst.ccGrey,
                       height: AppConst.kHieght * 0.3,
                       child: ListView(
-                        children: const [
+                        children: [
                           TodoTile(
                             start: "03:00",
                             end: "05:00",
+                            switcher:
+                                Switch(value: true, onChanged: (value) {}),
                           )
                         ],
                       ),
@@ -216,10 +243,27 @@ class _HomePageState extends ConsumerState<HomePage>
                 ),
               ),
               const HeightSpacer(hieght: 20),
-              const expansionTile(
+              expansionTile(
                   text: "Tommorrow's Task",
                   text2: "Things to do for tommorrow",
-                  children: []),
+                  onExpansionChanged: (bool expanded) {
+                    ref
+                        .read(expansionStateProvider.notifier)
+                        .setStart(!expanded);
+                  },
+                  trailing: Padding(
+                    padding: EdgeInsets.only(right: 6.0.w),
+                    child: ref.watch(expansionStateProvider)
+                        ? Icon(AntDesign.circledown, color: AppConst.ccBlack)
+                        : Icon(AntDesign.closecircleo, color: AppConst.ccBlue),
+                  ),
+                  children: [
+                    TodoTile(
+                      start: "03:00",
+                      end: "05:00",
+                      switcher: Switch(value: true, onChanged: (value) {}),
+                    )
+                  ]),
               const HeightSpacer(hieght: 20),
               expansionTile(
                   text: DateTime.now()
@@ -227,7 +271,24 @@ class _HomePageState extends ConsumerState<HomePage>
                       .toString()
                       .substring(5, 10),
                   text2: "Things to do for tommorrow",
-                  children: []),
+                  onExpansionChanged: (bool expanded) {
+                    ref
+                        .read(expansionState0Provider.notifier)
+                        .setStart(!expanded);
+                  },
+                  trailing: Padding(
+                    padding: EdgeInsets.only(right: 6.0.w),
+                    child: ref.watch(expansionState0Provider)
+                        ? Icon(AntDesign.circledown, color: AppConst.ccBlack)
+                        : Icon(AntDesign.closecircleo, color: AppConst.ccBlue),
+                  ),
+                  children: [
+                    TodoTile(
+                      start: "03:00",
+                      end: "05:00",
+                      switcher: Switch(value: true, onChanged: (value) {}),
+                    )
+                  ]),
               const HeightSpacer(hieght: 20),
               const expansionTile(
                   text: "Tommorrow's Task",

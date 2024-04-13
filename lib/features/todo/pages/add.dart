@@ -11,13 +11,12 @@ class _AddTasksState extends State<AddTasks> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
         body: Padding(
-          padding; EdgeInsects.symmetric(horizontal: )
-        )
-      ),
-    )
+          padding: EdgeInsets.symmetric(horizontal: 20),
+        ));
   }
 }

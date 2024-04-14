@@ -3,11 +3,16 @@ import 'package:first/common/widgets/appstyle.dart';
 import 'package:first/common/widgets/custom_otn_btn.dart';
 import 'package:first/common/widgets/custom_text.dart';
 import 'package:first/common/widgets/hieght_spacer.dart';
-import 'package:first/common/widgets/hieght_spacer.dart';
+
 import 'package:first/features/todo/controllers/dates/dates_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:first/common/helpers/db_helper.dart';
+import 'package:first/common/models/task_model.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'add.dart';
 import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart'
     as picker;
 
@@ -25,6 +30,8 @@ class _AddTasksState extends State<AddTasks> {
 
   @override
   Widget build(BuildContext context) {
+    final dateState =
+        context.read(dateStateProvider); // Accessing datesStateProvider
     return Scaffold(
       backgroundColor: AppConst.kLight,
       appBar: AppBar(
@@ -51,31 +58,27 @@ class _AddTasksState extends State<AddTasks> {
 
             CustomOtlnBtn(
               onTap: () {
-                picker.DatePicker.showDatePicker(
-                  context,
-                  showTitleActions: true,
-                  minTime: DateTime(2008, 3, 5),
-                  maxTime: DateTime(2024, 12, 31),
-                  theme: picker.DatePickerTheme(
-                    headerColor: AppConst.ccBlue,
-                    backgroundColor: Colors.white,
-                    itemStyle: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
-                    doneStyle: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                    ),
-                  ),
-                  currentTime: DateTime.now(),
-                  locale: picker.LocaleType.en,
-                );
+                picker.DatePicker.showDatePicker(context,
+                    showTitleActions: true,
+                    minTime: DateTime(2008, 3, 5),
+                    maxTime: DateTime(2024, 12, 31),
+                    theme: picker.DatePickerTheme(
+                        headerColor: AppConst.ccBlue,
+                        backgroundColor: Colors.white,
+                        itemStyle: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                        doneStyle:
+                            TextStyle(color: Colors.white, fontSize: 16)),
+                    onConfirm: (date) {
+                  ref.read(dateStateProvider.notifier).setDate.toString();
+                }, currentTime: DateTime.now(), locale: picker.LocaleType.en);
               },
               width: AppConst.kWidth,
               height: 52.h,
-              text: "fsf",
+              text: "Set Date",
               color2: AppConst.ccBlue,
               color: AppConst.kGreyBk,
             ),

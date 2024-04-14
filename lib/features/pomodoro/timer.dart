@@ -7,6 +7,7 @@ import 'package:first/common/widgets/appstyle.dart';
 import 'package:first/common/widgets/hieght_spacer.dart';
 import 'package:first/common/widgets/reusable_text.dart';
 import 'package:first/features/auth/pages/login.dart';
+import 'package:first/features/todo/pages/add.dart';
 import 'package:first/features/todo/pages/homepage.dart';
 
 import 'package:flutter/material.dart';
@@ -45,15 +46,15 @@ class _CustomTimerState extends State<CustomTimer> {
           BottomNavigationBarItem(
             icon: Icon(Icons.access_time,
                 size: 30, color: Colors.black), // Set the icon color to black
-            label: 'Pomodoro',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.home, size: 30, color: Colors.black),
-            label: 'Home',
+            label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.cloud, size: 30, color: Colors.black),
-            label: 'Weather',
+            icon: Icon(Icons.add, size: 30, color: Colors.black),
+            label: '',
           ),
         ],
         onTap: (index) {
@@ -73,7 +74,7 @@ class _CustomTimerState extends State<CustomTimer> {
             case 2:
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => LoginPage()),
+                MaterialPageRoute(builder: (context) => AddTasks()),
               );
               break;
           }

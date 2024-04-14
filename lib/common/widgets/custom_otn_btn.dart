@@ -29,9 +29,9 @@ class CustomOtlnBtn extends StatelessWidget {
           decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(1),
+                  color: Colors.black.withOpacity(0.3),
                   blurRadius: 5.0,
-                  spreadRadius: 2.0,
+                  spreadRadius: 1.0,
                   offset: Offset(0, 2),
                 ),
               ],

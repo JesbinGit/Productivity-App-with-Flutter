@@ -9,6 +9,7 @@ import 'package:first/common/widgets/width_spacer.dart';
 import 'package:first/features/auth/pages/login.dart';
 import 'package:first/features/pomodoro/timer.dart';
 import 'package:first/features/todo/controllers/expansion_provider.dart';
+import 'package:first/features/todo/pages/add.dart';
 import 'package:first/features/todo/widgets/todo_tile.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:async';
@@ -79,17 +80,6 @@ class _HomePageState extends ConsumerState<HomePage>
                 ],
               ),
             )),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            // Handle the button press
-          },
-          child: Icon(
-            Icons.add,
-            size: 30,
-            color: Colors.white,
-          ),
-          backgroundColor: AppConst.ccBlue,
-        ),
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: AppConst.kLight,
           unselectedItemColor: Colors.black,
@@ -118,7 +108,7 @@ class _HomePageState extends ConsumerState<HomePage>
                 padding: EdgeInsets.only(
                     top: 8), // Adjust the top padding for all icons
                 child: Icon(
-                  Icons.cloud,
+                  Icons.add,
                   size: 30,
                   color: AppConst.ccBlack,
                 ),
@@ -143,7 +133,7 @@ class _HomePageState extends ConsumerState<HomePage>
               case 2:
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginPage()),
+                  MaterialPageRoute(builder: (context) => AddTasks()),
                 );
                 break;
             }
